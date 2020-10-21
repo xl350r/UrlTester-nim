@@ -35,7 +35,7 @@ proc pget(url: string; prox: Proxy = nil) =
         let response = waitfor get(requrl, prox = prox)
         echo url & "\t" & response.status 
     except:
-        echo(url & "\t" & "Error: " & " Something Went Wrong Suppressing stacktraces"& getCurrentExceptionMsg()) # async generates FAT stacktraces
+        echo(url & "\t" & "Error: " & " Something Went Wrong Suppressing stacktraces") #& getCurrentExceptionMsg()) # async generates FAT stacktraces
 
 for url in dat.lines:
     try: 
@@ -43,7 +43,7 @@ for url in dat.lines:
         spawn pget("https://" & url, prox = prox)
         sleep(200)
     except:
-        echo(url & "\t" & "Error" & getCurrentExceptionMsg())
+        echo(url & "\t" & "Error" )#& getCurrentExceptionMsg())
         continue
 
 sync()
